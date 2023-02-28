@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Optional, Tuple, Type, Union
 from pydantic import BaseModel, validator
 from starlette.datastructures import FormData
 from starlette.requests import Request
-from tortoise import ForeignKeyFieldInstance, ManyToManyFieldInstance
+# from tortoise import ForeignKeyFieldInstance, ManyToManyFieldInstance
 from tortoise import Model as TortoiseModel
 from tortoise.fields import BooleanField, DateField, DatetimeField, JSONField
 from tortoise.fields.data import CharEnumFieldInstance, IntEnumFieldInstance, IntField, TextField
@@ -254,13 +254,13 @@ class Model(Resource):
             display, input_ = displays.Display(), inputs.Number(
                 placeholder=placeholder, null=null, default=field.default
             )
-        elif isinstance(field, ForeignKeyFieldInstance):
-            display, input_ = displays.Display(), inputs.ForeignKey(
-                field.related_model, null=null, default=field.default
-            )
-            field_name = field.source_field
-        elif isinstance(field, ManyToManyFieldInstance):
-            display, input_ = displays.InputOnly(), inputs.ManyToMany(field.related_model)
+        # elif isinstance(field, ForeignKeyFieldInstance):
+        #     display, input_ = displays.Display(), inputs.ForeignKey(
+        #         field.related_model, null=null, default=field.default
+        #     )
+        #     field_name = field.source_field
+        # elif isinstance(field, ManyToManyFieldInstance):
+        #     display, input_ = displays.InputOnly(), inputs.ManyToMany(field.related_model)
         return Field(name=field_name, label=label.title(), display=display, input_=input_)
 
     @classmethod

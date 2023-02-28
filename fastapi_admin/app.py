@@ -77,3 +77,4 @@ app = FastAPIAdmin(
 )
 app.add_middleware(BaseHTTPMiddleware, dispatch=middlewares.language_processor)
 app.include_router(router)
+
